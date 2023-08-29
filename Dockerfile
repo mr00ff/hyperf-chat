@@ -26,6 +26,8 @@ RUN set -ex \
     && wget https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && chmod u+x composer.phar \
     && mv composer.phar /usr/local/bin/composer \
+    # 设置 composer 加速
+    && composer config -g repos.packagist composer https://mirrors.tencent.com/composer/ \
     # show php version and extensions
     && php -v \
     && php -m \
@@ -34,10 +36,10 @@ RUN set -ex \
     && cd /etc/php7 \
     # - config PHP
     && { \
-        echo "upload_max_filesize=128M"; \
-        echo "post_max_size=128M"; \
-        echo "memory_limit=1G"; \
-        echo "date.timezone=${TIMEZONE}"; \
+    echo "upload_max_filesize=128M"; \
+    echo "post_max_size=128M"; \
+    echo "memory_limit=1G"; \
+    echo "date.timezone=${TIMEZONE}"; \
     } | tee conf.d/99_overrides.ini \
     # - config timezone
     && ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
