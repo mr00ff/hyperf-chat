@@ -152,3 +152,12 @@ Version => 4.5.9
 ...
 openssl => OpenSSL 1.0.2k-fips  26 Jan 2017 (请确保此处开启)
 ```
+
+
+```shell
+# 自定义dockerfile 修改
+
+# 创建 docker 容器
+docker run -tid --name hf-chat-0.0.1 -h hf-chat-dev-0.0.1 -v /Users/mr00ff/code/php_code/hyperf-chat:/opt/www -p 9501:9501/tcp hf-chat:latest
+
+```
